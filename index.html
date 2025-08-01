@@ -6,14 +6,17 @@
     <title>Adarsh Raj S | Web Developer & Digital Marketer</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>👨‍💻</text></svg>">
     <style>
         :root {
-            --primary: 	#008080; /* Fluorescent green */
-            --secondary: #4169E1; /* Royal blue */
-            --accent: #FF4500; /* Red-Orange */
+            --primary: #4361ee; /* Vibrant blue */
+            --secondary: #3a0ca3; /* Deep blue */
+            --accent: #f72585; /* Pink */
+            --light-accent: #4cc9f0; /* Light blue */
             --dark: #2D3748;
             --light: #F7FAFC;
-            --gradient: linear-gradient(135deg, #00FF7F 0%, #4169E1 100%);
+            --gradient: linear-gradient(135deg, #4361ee 0%, #3a0ca3 50%, #f72585 100%);
+            --gradient-light: linear-gradient(135deg, #4cc9f0 0%, #4361ee 100%);
         }
         
         * {
@@ -33,7 +36,6 @@
         h1, h2, h3, h4 {
             font-family: 'Montserrat', sans-serif;
             font-weight: 700;
-            color: var(--accent); /* Red titles */
         }
         
         a {
@@ -49,28 +51,45 @@
         
         /* Header */
         header {
-            background: white;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
             position: fixed;
             width: 100%;
-            z-index: 100;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
         }
         
         nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 1.5rem 0;
+            padding: 1.2rem 0;
         }
         
         .logo {
-            font-size: 1.8rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.5rem;
             font-weight: 700;
-            color: var(--primary);
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
         }
         
-        .logo span {
-            color: var(--accent);
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+            background: var(--gradient);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 1.2rem;
         }
         
         .nav-links {
@@ -79,9 +98,11 @@
         }
         
         .nav-links a {
-            font-weight: 500;
-            transition: color 0.3s;
+            font-weight: 600;
+            transition: all 0.3s;
             position: relative;
+            color: var(--dark);
+            font-size: 0.95rem;
         }
         
         .nav-links a:hover {
@@ -92,11 +113,12 @@
             content: '';
             position: absolute;
             width: 0;
-            height: 2px;
-            background: var(--primary);
+            height: 3px;
+            background: var(--gradient);
             bottom: -5px;
             left: 0;
             transition: width 0.3s;
+            border-radius: 3px;
         }
         
         .nav-links a:hover::after {
@@ -107,16 +129,36 @@
             display: none;
             font-size: 1.5rem;
             cursor: pointer;
+            color: var(--dark);
+            z-index: 1001;
         }
         
         /* Hero Section */
         .hero {
-            padding: 10rem 0 5rem;
+            padding: 12rem 0 6rem;
             background: var(--gradient);
             color: white;
             text-align: center;
             clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
             margin-bottom: 5rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPjxkZWZzPjxwYXR0ZXJuIGlkPSJwYXR0ZXJuIiB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiIHBhdHRlcm5UcmFuc2Zvcm09InJvdGF0ZSg0NSkiPjxyZWN0IHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgZmlsbD0icmdiYSgyNTUsMjU1LDI1NSwwLjA1KSIvPjwvcGF0dGVybj48L2RlZnM+PHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNwYXR0ZXJuKSIvPjwvc3ZnPg==');
+            opacity: 0.5;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
         }
         
         .hero h1 {
@@ -124,34 +166,39 @@
             margin-bottom: 1rem;
             line-height: 1.2;
             color: white;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.2);
         }
         
         .hero h2 {
             color: white;
             font-size: 2rem;
             margin-bottom: 1.5rem;
+            font-weight: 400;
+            opacity: 0.9;
         }
         
         .hero p {
             font-size: 1.2rem;
             max-width: 700px;
             margin: 0 auto 2rem;
+            opacity: 0.9;
         }
         
         .hero-btns {
             display: flex;
             justify-content: center;
-            gap: 1rem;
-            margin-top: 2rem;
+            gap: 1.5rem;
+            margin-top: 2.5rem;
         }
         
         .btn {
-            padding: 0.8rem 1.8rem;
+            padding: 0.9rem 2rem;
             border-radius: 50px;
             font-weight: 600;
             transition: all 0.3s;
             display: inline-block;
+            font-size: 1rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
         }
         
         .btn-primary {
@@ -160,72 +207,92 @@
         }
         
         .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-            background: var(--accent);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 25px rgba(0,0,0,0.15);
+            background: var(--light-accent);
             color: white;
         }
         
         .btn-outline {
             border: 2px solid white;
             color: white;
+            background: transparent;
         }
         
         .btn-outline:hover {
             background: white;
             color: var(--primary);
-            transform: translateY(-3px);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 25px rgba(0,0,0,0.15);
         }
         
         /* About Section */
         .section {
-            padding: 5rem 0;
+            padding: 6rem 0;
         }
         
         .section-title {
             text-align: center;
-            margin-bottom: 3rem;
+            margin-bottom: 4rem;
             position: relative;
         }
         
         .section-title h2 {
             font-size: 2.5rem;
             display: inline-block;
+            position: relative;
+            color: var(--secondary);
         }
         
         .section-title h2::after {
             content: '';
             position: absolute;
-            width: 70px;
-            height: 4px;
-            background: var(--accent);
-            bottom: -10px;
+            width: 80px;
+            height: 5px;
+            background: var(--gradient);
+            bottom: -15px;
             left: 50%;
             transform: translateX(-50%);
-            border-radius: 2px;
+            border-radius: 5px;
         }
         
         .about-content {
             display: flex;
             align-items: center;
-            gap: 3rem;
+            gap: 4rem;
         }
         
         .about-img {
             flex: 1;
-            border-radius: 10px;
+            border-radius: 20px;
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            background: var(--secondary);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            background: var(--gradient);
             display: flex;
             align-items: center;
             justify-content: center;
-            min-height: 300px;
+            min-height: 400px;
+            position: relative;
+        }
+        
+        .about-img::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            background: var(--gradient);
+            z-index: -1;
+            border-radius: 30px;
+            opacity: 0.5;
+            filter: blur(20px);
         }
         
         .about-img i {
             font-size: 8rem;
             color: white;
+            opacity: 0.8;
         }
         
         .about-text {
@@ -234,12 +301,15 @@
         
         .about-text h3 {
             font-size: 1.8rem;
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
             color: var(--secondary);
+            line-height: 1.3;
         }
         
         .about-text p {
             margin-bottom: 1.5rem;
+            color: #555;
+            line-height: 1.7;
         }
         
         .skills {
@@ -250,71 +320,149 @@
         }
         
         .skill {
-            background: var(--light);
-            padding: 0.5rem 1rem;
+            background: white;
+            padding: 0.6rem 1.2rem;
             border-radius: 50px;
             font-size: 0.9rem;
             font-weight: 500;
-            border: 1px solid var(--primary);
+            border: 2px solid var(--light-accent);
+            color: var(--secondary);
+            transition: all 0.3s;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+        
+        .skill:hover {
+            background: var(--gradient-light);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 15px rgba(67, 97, 238, 0.2);
+            border-color: transparent;
         }
         
         /* Services Section */
         .services {
             background: var(--light);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .services::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPjxkZWZzPjxwYXR0ZXJuIGlkPSJwYXR0ZXJuIiB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiIHBhdHRlcm5UcmFuc2Zvcm09InJvdGF0ZSg0NSkiPjxyZWN0IHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgZmlsbD0icmdiYSg2Nyw5NywyMzgsMC4wNSkiLz48L3BhdHRlcm4+PC9kZWZzPjxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjcGF0dGVybikiLz48L3N2Zz4=');
+            opacity: 0.3;
+        }
+        
+        .services-content {
+            position: relative;
+            z-index: 1;
         }
         
         .services-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
+            gap: 2.5rem;
         }
         
         .service-card {
             background: white;
-            padding: 2rem;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            transition: transform 0.3s, box-shadow 0.3s;
-            border-top: 4px solid var(--primary);
+            padding: 2.5rem 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+        
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--gradient);
+            transition: height 0.3s;
         }
         
         .service-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
-            border-top-color: var(--accent);
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        
+        .service-card:hover::before {
+            height: 10px;
         }
         
         .service-icon {
-            font-size: 2.5rem;
-            color: var(--primary);
-            margin-bottom: 1rem;
+            font-size: 2.8rem;
+            margin-bottom: 1.5rem;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            transition: all 0.3s;
         }
         
         .service-card:hover .service-icon {
-            color: var(--accent);
+            transform: scale(1.1);
         }
         
         .service-card h3 {
-            font-size: 1.3rem;
+            font-size: 1.4rem;
             margin-bottom: 1rem;
+            color: var(--secondary);
+        }
+        
+        .service-card p {
+            color: #666;
+            line-height: 1.7;
+            font-size: 0.95rem;
         }
         
         /* Experience Section */
+        .experience {
+            position: relative;
+        }
+        
+        .experience::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPjxkZWZzPjxwYXR0ZXJuIGlkPSJwYXR0ZXJuIiB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiIHBhdHRlcm5UcmFuc2Zvcm09InJvdGF0ZSg0NSkiPjxyZWN0IHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgZmlsbD0icmdiYSgyNDcsMzksMTMzLDAuMDUpIi8+PC9wYXR0ZXJuPjwvZGVmcz48cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI3BhdHRlcm4pIi8+PC9zdmc+');
+            opacity: 0.3;
+        }
+        
+        .experience-content {
+            position: relative;
+            z-index: 1;
+        }
+        
         .timeline {
             position: relative;
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto;
         }
         
         .timeline::before {
             content: '';
             position: absolute;
-            width: 2px;
-            background: var(--primary);
+            width: 4px;
+            background: var(--gradient);
             top: 0;
             bottom: 0;
             left: 50%;
-            margin-left: -1px;
+            margin-left: -2px;
+            border-radius: 4px;
         }
         
         .timeline-item {
@@ -322,6 +470,7 @@
             position: relative;
             width: 50%;
             box-sizing: border-box;
+            margin-bottom: 2rem;
         }
         
         .timeline-item:nth-child(odd) {
@@ -333,16 +482,23 @@
         }
         
         .timeline-content {
-            padding: 20px;
+            padding: 2rem;
             background: white;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
             position: relative;
-            border-left: 3px solid var(--secondary);
+            border-left: 4px solid var(--primary);
+            transition: all 0.3s;
+        }
+        
+        .timeline-content:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            border-left-color: var(--accent);
         }
         
         .timeline-content h3 {
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             margin-bottom: 0.5rem;
             color: var(--secondary);
         }
@@ -350,121 +506,186 @@
         .timeline-content h4 {
             font-size: 1rem;
             color: var(--accent);
-            margin-bottom: 0.5rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
         }
         
         .timeline-content p {
-            font-size: 0.9rem;
+            font-size: 0.95rem;
+            color: #555;
+            line-height: 1.7;
         }
         
         .timeline-item::after {
             content: '';
             position: absolute;
-            width: 20px;
-            height: 20px;
-            background: var(--primary);
+            width: 24px;
+            height: 24px;
+            background: var(--gradient);
             border-radius: 50%;
             top: 50%;
-            right: -10px;
+            right: -12px;
             transform: translateY(-50%);
             z-index: 1;
+            box-shadow: 0 0 0 6px white;
         }
         
         .timeline-item:nth-child(even)::after {
-            left: -10px;
+            left: -12px;
+        }
+        
+        .timeline-date {
+            position: absolute;
+            top: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: white;
+            background: var(--gradient);
+            padding: 0.5rem 1.2rem;
+            border-radius: 50px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .timeline-item:nth-child(odd) .timeline-date {
+            right: -150px;
+        }
+        
+        .timeline-item:nth-child(even) .timeline-date {
+            left: -150px;
         }
         
         /* Projects Section */
         .projects-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
         }
         
         .project-card {
             background: white;
-            border-radius: 10px;
+            border-radius: 15px;
             overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            transition: transform 0.3s, box-shadow 0.3s;
-            border: 1px solid var(--primary);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            border: 1px solid rgba(0,0,0,0.05);
         }
         
         .project-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
-            border-color: var(--accent);
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
         }
         
         .project-img {
-            height: 150px;
-            background: var(--secondary);
+            height: 180px;
+            background: var(--gradient);
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
-            font-size: 3rem;
+            font-size: 3.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .project-img::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(0,0,0,0.1) 0%, transparent 100%);
         }
         
         .project-info {
-            padding: 1.5rem;
+            padding: 1.8rem;
         }
         
         .project-info h3 {
-            font-size: 1.3rem;
-            margin-bottom: 0.5rem;
+            font-size: 1.4rem;
+            margin-bottom: 0.8rem;
             color: var(--secondary);
         }
         
         .project-info p {
-            font-size: 0.9rem;
-            margin-bottom: 1rem;
+            font-size: 0.95rem;
+            margin-bottom: 1.2rem;
             color: #666;
+            line-height: 1.6;
         }
         
         .project-tags {
             display: flex;
             flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-bottom: 1rem;
+            gap: 0.7rem;
+            margin-bottom: 1.5rem;
         }
         
         .project-tag {
-            background: var(--light);
-            padding: 0.3rem 0.8rem;
+            background: rgba(67, 97, 238, 0.1);
+            padding: 0.4rem 1rem;
             border-radius: 50px;
-            font-size: 0.7rem;
+            font-size: 0.8rem;
             font-weight: 500;
-            border: 1px solid var(--primary);
+            color: var(--primary);
+            border: 1px solid rgba(67, 97, 238, 0.2);
         }
         
         .project-links {
             display: flex;
-            gap: 1rem;
+            gap: 1.5rem;
         }
         
         .project-link {
-            font-size: 0.9rem;
-            font-weight: 500;
+            font-size: 0.95rem;
+            font-weight: 600;
             color: var(--primary);
             display: flex;
             align-items: center;
-            gap: 0.3rem;
-            transition: color 0.3s;
+            gap: 0.5rem;
+            transition: all 0.3s;
         }
         
         .project-link:hover {
             color: var(--accent);
+            transform: translateX(5px);
+        }
+        
+        .project-link i {
+            transition: transform 0.3s;
+        }
+        
+        .project-link:hover i {
+            transform: translateX(3px);
         }
         
         /* Contact Section */
         .contact {
             background: var(--gradient);
             color: white;
-            clip-path: polygon(0 10%, 100% 0, 100% 100%, 0% 100%);
-            padding: 8rem 0 5rem;
+            clip-path: polygon(0 5%, 100% 0, 100% 100%, 0% 100%);
+            padding: 10rem 0 6rem;
             margin-top: 5rem;
             text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .contact::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPjxkZWZzPjxwYXR0ZXJuIGlkPSJwYXR0ZXJuIiB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiIHBhdHRlcm5UcmFuc2Zvcm09InJvdGF0ZSg0NSkiPjxyZWN0IHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgZmlsbD0icmdiYSgyNTUsMjU1LDI1NSwwLjA1KSIvPjwvcGF0dGVybj48L2RlZnM+PHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNwYXR0ZXJuKSIvPjwvc3ZnPg==');
+            opacity: 0.3;
+        }
+        
+        .contact-content {
+            position: relative;
+            z-index: 1;
         }
         
         .contact .section-title h2 {
@@ -476,31 +697,71 @@
         }
         
         .contact-info {
-            max-width: 600px;
+            max-width: 700px;
             margin: 0 auto;
         }
         
         .contact-info h3 {
-            font-size: 1.8rem;
-            margin-bottom: 1.5rem;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            line-height: 1.3;
         }
         
         .contact-details {
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
-            margin-bottom: 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
         }
         
         .contact-item {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 1rem;
+            background: rgba(255,255,255,0.1);
+            padding: 2rem;
+            border-radius: 15px;
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            border: 1px solid rgba(255,255,255,0.2);
+            transition: all 0.3s;
+        }
+        
+        .contact-item:hover {
+            transform: translateY(-5px);
+            background: rgba(255,255,255,0.15);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
         }
         
         .contact-icon {
-            font-size: 1.5rem;
+            font-size: 2rem;
+            width: 70px;
+            height: 70px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            color: white;
+        }
+        
+        .contact-item h4 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: white;
+        }
+        
+        .contact-item p {
+            opacity: 0.9;
+            font-size: 1rem;
+        }
+        
+        .contact-social {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+        
+        .contact-social a {
             width: 50px;
             height: 50px;
             background: rgba(255,255,255,0.1);
@@ -508,96 +769,182 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            font-size: 1.3rem;
+            color: white;
+            transition: all 0.3s;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        
+        .contact-social a:hover {
+            background: white;
+            color: var(--primary);
+            transform: translateY(-5px);
         }
         
         /* Footer */
         footer {
             background: var(--dark);
             color: white;
-            padding: 2rem 0;
+            padding: 3rem 0;
             text-align: center;
             position: relative;
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .footer-logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .footer-links a {
+            font-weight: 500;
+            transition: color 0.3s;
+            color: rgba(255,255,255,0.7);
+        }
+        
+        .footer-links a:hover {
+            color: white;
         }
         
         .social-links {
             display: flex;
             justify-content: center;
             gap: 1.5rem;
-            margin-bottom: 1.5rem;
+            margin-bottom: 2rem;
         }
         
         .social-link {
-            width: 40px;
-            height: 40px;
+            width: 45px;
+            height: 45px;
             background: rgba(255,255,255,0.1);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: background 0.3s;
+            transition: all 0.3s;
+            color: white;
+            font-size: 1.2rem;
         }
         
         .social-link:hover {
-            background: var(--primary);
+            background: var(--gradient);
+            transform: translateY(-5px);
         }
         
         .copyright {
             font-size: 0.9rem;
-            opacity: 0.8;
+            opacity: 0.7;
+            margin-top: 1.5rem;
         }
         
-        /* Fixed Contact Buttons */
-        .fixed-contact-buttons {
+        /* Floating Contact Button */
+        .floating-contact-btn {
             position: fixed;
-            bottom: 20px;
-            left: 0;
-            right: 0;
-            display: flex;
-            justify-content: space-between;
-            padding: 0 20px;
-            z-index: 99;
-        }
-        
-        .whatsapp-btn, .call-btn {
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: var(--gradient);
+            color: white;
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 12px 20px;
-            border-radius: 50px;
-            font-weight: 600;
-            color: white;
-            text-decoration: none;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 99;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
             transition: all 0.3s;
         }
         
-        .whatsapp-btn {
-            background: #25D366; /* WhatsApp green */
-            margin-right: 10px;
+        .floating-contact-btn:hover {
+            transform: scale(1.1) translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.3);
         }
         
-        .call-btn {
-            background: var(--accent); /* Red */
+        .contact-options {
+            position: absolute;
+            bottom: 80px;
+            right: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+            transform: translateY(20px);
         }
         
-        .whatsapp-btn:hover, .call-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+        .contact-options.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
         }
         
-        .whatsapp-btn i, .call-btn i {
-            margin-right: 8px;
-            font-size: 1.2rem;
+        .contact-option {
+            background: white;
+            color: var(--primary);
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            transition: all 0.3s;
+            white-space: nowrap;
+        }
+        
+        .contact-option:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateX(-5px);
+        }
+        
+        .contact-option.whatsapp {
+            background: #25D366;
+            color: white;
+        }
+        
+        .contact-option.whatsapp:hover {
+            background: #128C7E;
+        }
+        
+        .contact-option.call {
+            background: var(--accent);
+            color: white;
+        }
+        
+        .contact-option.call:hover {
+            background: #d3166b;
         }
         
         /* Back to Top Button */
         .back-to-top {
             position: fixed;
-            bottom: 80px;
-            right: 30px;
+            bottom: 30px;
+            left: 30px;
             width: 50px;
             height: 50px;
-            background: var(--primary);
+            background: var(--gradient);
             color: white;
             border-radius: 50%;
             display: flex;
@@ -618,58 +965,12 @@
         }
         
         .back-to-top:hover {
-            background: var(--accent);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
         }
         
         /* Mobile Styles */
-        @media (max-width: 768px) {
-            .nav-links {
-                position: fixed;
-                top: 80px;
-                left: -100%;
-                width: 100%;
-                height: calc(100vh - 80px);
-                background: white;
-                flex-direction: column;
-                align-items: center;
-                padding: 2rem 0;
-                transition: left 0.3s;
-                gap: 1.5rem;
-            }
-            
-            .nav-links.active {
-                left: 0;
-            }
-            
-            .mobile-menu-btn {
-                display: block;
-            }
-            
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-            
-            .hero h2 {
-                font-size: 1.5rem;
-            }
-            
-            .hero-btns {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .about-content {
-                flex-direction: column;
-            }
-            
-            .about-img {
-                min-height: 200px;
-            }
-            
-            .about-img i {
-                font-size: 5rem;
-            }
-            
+        @media (max-width: 992px) {
             .timeline::before {
                 left: 31px;
             }
@@ -692,21 +993,116 @@
                 left: 20px;
             }
             
-            .section {
-                padding: 3rem 0;
+            .timeline-date {
+                position: relative;
+                top: auto;
+                left: auto;
+                right: auto;
+                margin-bottom: 1rem;
+                display: inline-block;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 0;
+                left: -100%;
+                width: 80%;
+                height: 100vh;
+                background: white;
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 6rem 2rem 2rem;
+                transition: left 0.3s;
+                gap: 1.5rem;
+                box-shadow: 5px 0 30px rgba(0,0,0,0.1);
+                z-index: 999;
+            }
+            
+            .nav-links.active {
+                left: 0;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
             }
             
             .hero {
+                padding: 10rem 0 4rem;
+            }
+            
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+            
+            .hero h2 {
+                font-size: 1.5rem;
+            }
+            
+            .hero-btns {
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+            }
+            
+            .about-content {
+                flex-direction: column;
+            }
+            
+            .about-img {
+                min-height: 300px;
+                width: 100%;
+            }
+            
+            .about-img i {
+                font-size: 6rem;
+            }
+            
+            .section {
+                padding: 4rem 0;
+            }
+            
+            .contact {
                 padding: 8rem 0 4rem;
             }
             
-            .fixed-contact-buttons {
-                padding: 0 10px;
+            .contact-details {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .hero h1 {
+                font-size: 2.2rem;
             }
             
-            .whatsapp-btn, .call-btn {
-                padding: 10px 15px;
-                font-size: 0.9rem;
+            .hero h2 {
+                font-size: 1.3rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .floating-contact-btn {
+                bottom: 20px;
+                right: 20px;
+                width: 50px;
+                height: 50px;
+                font-size: 1.3rem;
+            }
+            
+            .back-to-top {
+                bottom: 20px;
+                left: 20px;
+                width: 45px;
+                height: 45px;
+                font-size: 1rem;
             }
         }
     </style>
@@ -716,7 +1112,10 @@
     <header>
         <div class="container">
             <nav>
-                <a href="#" class="logo">Adarsh Raj S</span></a>
+                <a href="#" class="logo">
+                    <div class="logo-icon">AR</div>
+                    Adarsh Raj S
+                </a>
                 <div class="nav-links">
                     <a href="#home">Home</a>
                     <a href="#about">About</a>
@@ -734,13 +1133,15 @@
 
     <!-- Hero Section -->
     <section class="hero" id="home">
-        <div class="container">
-            <h1>Adarsh Raj S</h1>
-            <h2>Web Developer & Digital Marketer</h2>
-            <p>Creating stunning websites and effective digital marketing strategies to help businesses grow online.</p>
-            <div class="hero-btns">
-                <a href="#projects" class="btn btn-primary">View My Work</a>
-                <a href="#contact" class="btn btn-outline">Contact Me</a>
+        <div class="hero-content">
+            <div class="container">
+                <h1>Adarsh Raj S</h1>
+                <h2>Web Developer & Digital Marketer</h2>
+                <p>Creating stunning websites and effective digital marketing strategies to help businesses grow online.</p>
+                <div class="hero-btns">
+                    <a href="#projects" class="btn btn-primary">View My Work</a>
+                    <a href="#contact" class="btn btn-outline">Contact Me</a>
+                </div>
             </div>
         </div>
     </section>
@@ -781,83 +1182,90 @@
 
     <!-- Services Section -->
     <section class="section services" id="services">
-        <div class="container">
-            <div class="section-title">
-                <h2>My Services</h2>
-            </div>
-            <div class="services-grid">
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-code"></i>
-                    </div>
-                    <h3>Web Development</h3>
-                    <p>Custom website development using WordPress, Shopify, HTML, CSS, Bootstrap, JavaScript, Python, and Django to create responsive and user-friendly websites.</p>
+        <div class="services-content">
+            <div class="container">
+                <div class="section-title">
+                    <h2>My Services</h2>
                 </div>
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-search-dollar"></i>
+                <div class="services-grid">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-code"></i>
+                        </div>
+                        <h3>Web Development</h3>
+                        <p>Custom website development using WordPress, Shopify, HTML, CSS, Bootstrap, JavaScript, Python, and Django to create responsive and user-friendly websites.</p>
                     </div>
-                    <h3>SEO Optimization</h3>
-                    <p>Comprehensive SEO services including keyword research, on-page optimization, technical SEO, and local SEO to improve your website's visibility and rankings.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-ad"></i>
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-search-dollar"></i>
+                        </div>
+                        <h3>SEO Optimization</h3>
+                        <p>Comprehensive SEO services including keyword research, on-page optimization, technical SEO, and local SEO to improve your website's visibility and rankings.</p>
                     </div>
-                    <h3>Digital Advertising</h3>
-                    <p>Strategic paid advertising campaigns on Google Ads and Meta Ads platforms to drive targeted traffic and maximize your return on investment.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-hashtag"></i>
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-ad"></i>
+                        </div>
+                        <h3>Digital Advertising</h3>
+                        <p>Strategic paid advertising campaigns on Google Ads and Meta Ads platforms to drive targeted traffic and maximize your return on investment.</p>
                     </div>
-                    <h3>Social Media Marketing</h3>
-                    <p>Effective social media strategies for Instagram, Facebook, and WhatsApp Business to engage your audience and grow your brand presence.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-chart-line"></i>
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-hashtag"></i>
+                        </div>
+                        <h3>Social Media Marketing</h3>
+                        <p>Effective social media strategies for Instagram, Facebook, and WhatsApp Business to engage your audience and grow your brand presence.</p>
                     </div>
-                    <h3>Web Analytics</h3>
-                    <p>In-depth analysis using Google Analytics and Search Console to track performance, understand user behavior, and optimize your digital strategy.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-paint-brush"></i>
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h3>Web Analytics</h3>
+                        <p>In-depth analysis using Google Analytics and Search Console to track performance, understand user behavior, and optimize your digital strategy.</p>
                     </div>
-                    <h3>Content Creation</h3>
-                    <p>Creative content services including blog writing, poster design, and reel editing to enhance your brand's visual appeal and messaging.</p>
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-paint-brush"></i>
+                        </div>
+                        <h3>Content Creation</h3>
+                        <p>Creative content services including blog writing, poster design, and reel editing to enhance your brand's visual appeal and messaging.</p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Experience Section -->
-    <section class="section" id="experience">
-        <div class="container">
-            <div class="section-title">
-                <h2>My Experience</h2>
-            </div>
-            <div class="timeline">
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <h3>Web Developer Cum Digital Marketer</h3>
-                        <h4>Deityom Marketing | SEP 2024 - Present</h4>
-                        <p>Developed websites using Shopify, WordPress, HTML, CSS, Bootstrap, JavaScript, Python, and Django. Handled SEO, web analysis with Google Analytics and Search Console, and managed Meta and Google Ads. Executed social media marketing on Instagram, Facebook, WhatsApp Business, and Meta Business Suite.</p>
-                    </div>
+    <section class="section experience" id="experience">
+        <div class="experience-content">
+            <div class="container">
+                <div class="section-title">
+                    <h2>My Experience</h2>
                 </div>
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <h3>Python Developer Intern</h3>
-                        <h4>Futura Labs Calicut | JAN 2024 - APR 2024</h4>
-                        <p>Learned and practiced Python, Django, HTML, CSS, Bootstrap, JavaScript, GitHub, and REST API development through real-time projects and guided training.</p>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-date">SEP 2024 - Present</div>
+                        <div class="timeline-content">
+                            <h3>Web Developer Cum Digital Marketer</h3>
+                            <h4>Deityom Marketing</h4>
+                            <p>Developed websites using Shopify, WordPress, HTML, CSS, Bootstrap, JavaScript, Python, and Django. Handled SEO, web analysis with Google Analytics and Search Console, and managed Meta and Google Ads. Executed social media marketing on Instagram, Facebook, WhatsApp Business, and Meta Business Suite.</p>
+                        </div>
                     </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <h3>BTech in Mechanical Engineering</h3>
-                        <h4>LBS College of Engineering Kasaragod | 2016 - 2020</h4>
-                        <p>Graduated from APJ Abdul Kalam Technological University with a degree in Mechanical Engineering.</p>
+                    <div class="timeline-item">
+                        <div class="timeline-date">JAN 2024 - APR 2024</div>
+                        <div class="timeline-content">
+                            <h3>Python Developer Intern</h3>
+                            <h4>Futura Labs Calicut</h4>
+                            <p>Learned and practiced Python, Django, HTML, CSS, Bootstrap, JavaScript, GitHub, and REST API development through real-time projects and guided training.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">2016 - 2020</div>
+                        <div class="timeline-content">
+                            <h3>BTech in Mechanical Engineering</h3>
+                            <h4>LBS College of Engineering Kasaragod</h4>
+                            <p>Graduated from APJ Abdul Kalam Technological University with a degree in Mechanical Engineering.</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -991,39 +1399,41 @@
 
     <!-- Contact Section -->
     <section class="contact" id="contact">
-        <div class="container">
-            <div class="section-title">
-                <h2>Get In Touch</h2>
-            </div>
-            <div class="contact-info">
-                <h3>Let's Talk About Your Project</h3>
-                <div class="contact-details">
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <i class="fas fa-phone"></i>
-                        </div>
-                        <div>
+        <div class="contact-content">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Get In Touch</h2>
+                </div>
+                <div class="contact-info">
+                    <h3>Let's Talk About Your Project</h3>
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
                             <h4>Phone</h4>
                             <p>+91 9496081054 or +91 8075551892</p>
                         </div>
-                    </div>
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <i class="fas fa-envelope"></i>
-                        </div>
-                        <div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
                             <h4>Email</h4>
                             <p>adarshrajscasual@gmail.com</p>
                         </div>
-                    </div>
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <i class="fas fa-map-marker-alt"></i>
-                        </div>
-                        <div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
                             <h4>Location</h4>
                             <p>Vadakara, Kozhikode, Kerala, India</p>
                         </div>
+                    </div>
+                    <div class="contact-social">
+                        <a href="https://github.com/adarshrajs1999" target="_blank"><i class="fab fa-github"></i></a>
+                        <a href="www.linkedin.com/in/adarsh-raj-s-digital-marketer" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://www.instagram.com/adu_digitalmarketer/" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.facebook.com/people/ADU-Digital-Marketer/61577752214150/" target="_blank"><i class="fab fa-facebook-f"></i></a>
                     </div>
                 </div>
             </div>
@@ -1033,24 +1443,38 @@
     <!-- Footer -->
     <footer>
         <div class="container">
-            <div class="social-links">
-                <a href="https://github.com/adarshrajs1999" target="_blank" class="social-link"><i class="fab fa-github"></i></a>
-                <a href="www.linkedin.com/in/adarsh-raj-s-digital-marketer" class="social-link"><i class="fab fa-linkedin-in"></i></a>
-                <a href="https://www.instagram.com/adu_digitalmarketer/" class="social-link"><i class="fab fa-instagram"></i></a>
-                <a href="https://www.facebook.com/people/ADU-Digital-Marketer/61577752214150/" class="social-link"><i class="fab fa-facebook-f"></i></a>
+            <div class="footer-content">
+                <div class="footer-logo">Adarsh Raj S</div>
+                <div class="footer-links">
+                    <a href="#home">Home</a>
+                    <a href="#about">About</a>
+                    <a href="#services">Services</a>
+                    <a href="#experience">Experience</a>
+                    <a href="#projects">Projects</a>
+                    <a href="#contact">Contact</a>
+                </div>
+                <div class="social-links">
+                    <a href="https://github.com/adarshrajs1999" target="_blank" class="social-link"><i class="fab fa-github"></i></a>
+                    <a href="www.linkedin.com/in/adarsh-raj-s-digital-marketer" target="_blank" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="https://www.instagram.com/adu_digitalmarketer/" target="_blank" class="social-link"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.facebook.com/people/ADU-Digital-Marketer/61577752214150/" target="_blank" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                </div>
+                <p class="copyright">© 2024 Adarsh Raj S. All Rights Reserved.</p>
             </div>
-            <p class="copyright">© 2024 Adarsh Raj S. All Rights Reserved.</p>
         </div>
     </footer>
 
-    <!-- Fixed Contact Buttons -->
-    <div class="fixed-contact-buttons">
-        <a href="https://wa.me/919496081054" class="whatsapp-btn" target="_blank">
-            <i class="fab fa-whatsapp"></i> WhatsApp
-        </a>
-        <a href="tel:+919496081054" class="call-btn">
-            <i class="fas fa-phone"></i> Call Now
-        </a>
+    <!-- Floating Contact Button -->
+    <div class="floating-contact-btn">
+        <i class="fas fa-comment-dots"></i>
+        <div class="contact-options">
+            <a href="https://wa.me/919496081054" class="contact-option whatsapp" target="_blank">
+                <i class="fab fa-whatsapp"></i> WhatsApp
+            </a>
+            <a href="tel:+919496081054" class="contact-option call">
+                <i class="fas fa-phone"></i> Call Now
+            </a>
+        </div>
     </div>
 
     <!-- Back to Top Button -->
@@ -1109,6 +1533,46 @@
                 behavior: 'smooth'
             });
         });
+        
+        // Floating Contact Button
+        const floatingContactBtn = document.querySelector('.floating-contact-btn');
+        const contactOptions = document.querySelector('.contact-options');
+        
+        floatingContactBtn.addEventListener('click', () => {
+            contactOptions.classList.toggle('active');
+        });
+        
+        // Close contact options when clicking outside
+        document.addEventListener('click', (e) => {
+            if(!floatingContactBtn.contains(e.target) && !contactOptions.contains(e.target)) {
+                contactOptions.classList.remove('active');
+            }
+        });
+        
+        // Animation on scroll
+        const animateOnScroll = () => {
+            const elements = document.querySelectorAll('.service-card, .project-card, .timeline-item, .contact-item');
+            
+            elements.forEach(element => {
+                const elementPosition = element.getBoundingClientRect().top;
+                const screenPosition = window.innerHeight / 1.2;
+                
+                if(elementPosition < screenPosition) {
+                    element.style.opacity = '1';
+                    element.style.transform = 'translateY(0)';
+                }
+            });
+        };
+        
+        // Set initial state for animated elements
+        document.querySelectorAll('.service-card, .project-card, .timeline-item, .contact-item').forEach(element => {
+            element.style.opacity = '0';
+            element.style.transform = 'translateY(30px)';
+            element.style.transition = 'all 0.6s ease-out';
+        });
+        
+        window.addEventListener('load', animateOnScroll);
+        window.addEventListener('scroll', animateOnScroll);
     </script>
 </body>
 </html>
